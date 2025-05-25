@@ -20,21 +20,40 @@ export default function AuthForm() {
         setLoading(true); //Start loading
 
         if (isLoginMode) {
-            //Call supabase to login with PW
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+              });
+              if (error) {
+                setError(error.message);
+                setLoading(false);
+                return;
+              }
+              //Logic to handle successful login (Redirect to user dashboard)
         } else {
-            //Call supabase to sign up
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                  data: { name }, // This stores the name as user metadata
+                },
+              });
+              if (error) {
+                setError(error.message);
+                setLoading(false);
+                return
+              }
         }
 
         setLoading(false); //End loading
     }
-    //use setError in handeSubmit function
-    //use setLoading to manage loading state
+
 
     return (
         <div>
             <h1>{isLoginMode ? "Login" : "Sign Up"}</h1>
             <p>Let's get started on your project today</p>
-            <form submit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 {!isLoginMode && (
                     <TextInput
                     type="text"
