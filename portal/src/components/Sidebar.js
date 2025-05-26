@@ -1,8 +1,17 @@
 import Link from "next/link";
 
-export default function Sidebar() {
+export default function Sidebar({ isMobile = false, setSidebarOpen, className = "" }) {
   return (
-    <aside className="w-56 bg-white border-r border-gray-200 min-h-screen p-6 hidden md:block text-gray-900">
+    <aside className={className || "w-56 bg-white border-r border-gray-200 min-h-screen p-6 hidden md:block text-gray-900"}>
+      {isMobile && (
+        <button
+          className="self-end mb-4 text-gray-700 text-2xl font-bold hover:text-gray-900"
+          onClick={() => setSidebarOpen(false)}
+          aria-label="Close sidebar"
+        >
+          ✕
+        </button>
+      )}
       <div>
         <h1 className="text-2xl font-bold pl-2 mb-4">Logo</h1>
       </div>
