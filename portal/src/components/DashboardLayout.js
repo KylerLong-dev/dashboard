@@ -14,25 +14,26 @@ export default function DashboardLayout({ children }) {
       {sidebarOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            className="fixed inset-0 z-40"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
             onClick={() => setSidebarOpen(false)}
           />
           <Sidebar
             isMobile={true}
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
-            className="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 flex flex-col p-6"
+            className="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 flex flex-col p-6 text-gray-900"
           />
         </>
       )}
 
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col"> {/*container holding the header and main content*/}
         {/* Header */}
         <header className="flex justify-between items-center w-full px-6 py-4 bg-gray-50 text-gray-900">
-          <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-          <div className="flex gap-2">
+          <h1 className="text-2xl font-bold">Dashboard</h1>
+          <div className="flex items-center gap-2">
             <button
-              className="block md:hidden rounded hover:bg-gray-200 focus:outline-none cursor-pointer mb-4"
+              className="block md:hidden rounded hover:bg-gray-200 focus:outline-none cursor-pointer"
               aria-label="Open sidebar"
               onClick={() => setSidebarOpen(true)}
             >
