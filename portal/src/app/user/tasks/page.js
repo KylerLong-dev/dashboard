@@ -1,3 +1,7 @@
+import TaskList from "@/components/TaskList";
+
 export default function TasksPage() {
-  return <div>Tasks List</div>;
-} 
+  return (
+    <TaskList />
+  );
+}
