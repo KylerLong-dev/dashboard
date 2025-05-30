@@ -14,7 +14,17 @@ export default function TaskList( ) {
         async function fetchTasks() {
             setLoading(true);
             setError(""); //clears previous error
-            const { data, error } = await supabase.from("task_list").select("*"); //This code currently fetches all data from task_list table, need to filter by user
+
+            //Get the current user
+            const { data: { user } } = await supabase.auth.getUser(); //user variable holds the current logged-in user's object
+            if (!user) {
+                setError("No current user logged in");
+                setLoading(false);
+                return;
+            }
+
+            //Fetch only tasks for this user
+            const { data, error } = await supabase.from("task_list").select("*").eq("user_id", user.id);
             if (error) {
                 setError(error.message);
             }
@@ -23,19 +33,24 @@ export default function TaskList( ) {
             }
             setLoading(false);
         }
-        fetchTasks();
-    }, []);
 
-    //
+        fetchTasks();
+
+    }, []);
 
     return (
         <div>
-            <TaskItem
-            title="Sample Task"
-            description="This is a sample task description."
-            status="to_do"
-            link="#"
-            />
+            {error && <div>{error}</div>}
+            {loading && <div>Loading...</div>}
+            {tasks.map((task) => (
+                <TaskItem
+                    key={task.id}
+                    title={task.title}
+                    description={task.description}
+                    status={task.status}
+                    link={task.link}
+                />
+             ))}
         </div>
     );    
 }   
