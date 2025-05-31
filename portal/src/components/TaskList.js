@@ -13,29 +13,24 @@ export default function TaskList( ) {
     useEffect(() => {
         async function fetchTasks() {
             setLoading(true);
-            setError(""); //clears previous error
-
-            //Get the current user
-            const { data: { user } } = await supabase.auth.getUser(); //user variable holds the current logged-in user's object
+            setError("");
+            // Get the current user
+            const { data: { user } } = await supabase.auth.getUser();
             if (!user) {
                 setError("No current user logged in");
                 setLoading(false);
                 return;
             }
-
-            //Fetch only tasks for this user
+            // Fetch only tasks for this user
             const { data, error } = await supabase.from("task_list").select("*").eq("user_id", user.id);
             if (error) {
                 setError(error.message);
-            }
-            else {
+            } else {
                 setTasks(data);
             }
             setLoading(false);
         }
-
         fetchTasks();
-
     }, []);
 
     return (
@@ -47,7 +42,7 @@ export default function TaskList( ) {
                     key={task.id}
                     title={task.title}
                     description={task.description}
-                    status={task.status}
+                    status={task.completed ? "Completed" : "To Do"}
                     link={task.link}
                 />
              ))}
