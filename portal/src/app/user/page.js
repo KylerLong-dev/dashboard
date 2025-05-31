@@ -1,7 +1,6 @@
 
-
 export default function UserDashboard() {
   return (
-    <div></div>
+    <div>User Dashboard</div>
   );
 } 

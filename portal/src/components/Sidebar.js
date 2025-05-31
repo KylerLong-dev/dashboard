@@ -19,10 +19,10 @@ export default function Sidebar({ isMobile = false, setSidebarOpen, className=""
         <h1 className="text-2xl font-bold pl-2 mb-4 hidden md:block">Logo</h1>
       </div>
       <nav className="space-y-1 flex flex-col">
-        <Link href="./user/" className="hover:bg-gray-100 p-2 rounded-md">Dashboard</Link>
-        <Link href="./messages" className="hover:bg-gray-100 p-2 rounded-md">Messages</Link>
-        <Link href="./projects" className="hover:bg-gray-100 p-2 rounded-md">Projects</Link>
-        <Link href="./tasks" className="hover:bg-gray-100 p-2 rounded-md">Tasks</Link>
+        <Link href="/user" className="hover:bg-gray-100 p-2 rounded-md">Dashboard</Link>
+        <Link href="/user/messages" className="hover:bg-gray-100 p-2 rounded-md">Messages</Link>
+        <Link href="/user/projects" className="hover:bg-gray-100 p-2 rounded-md">Projects</Link>
+        <Link href="/user/tasks" className="hover:bg-gray-100 p-2 rounded-md">Tasks</Link>
       </nav>
     </aside>
   );

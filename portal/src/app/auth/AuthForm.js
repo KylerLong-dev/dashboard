@@ -3,6 +3,7 @@ import { useState } from "react";
 import { supabase } from "../../lib/supabaseClient"
 import TextInput from "@/components/TextInput";
 import Button from "@components/Button";
+import { useRouter } from "next/navigation";
 
 export default function AuthForm() {
 
@@ -12,6 +13,7 @@ export default function AuthForm() {
     const [isLoginMode, setIsLoginMode] = useState(false);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState("");
+    const router = useRouter();
 
     //handleSubmit async function
     async function handleSubmit(e) {
@@ -30,6 +32,7 @@ export default function AuthForm() {
                 return;
               }
               //Logic to handle successful login (Redirect to user dashboard)
+              router.push("/user");
         } else {
             const { data, error } = await supabase.auth.signUp({
                 email,
@@ -43,6 +46,8 @@ export default function AuthForm() {
                 setLoading(false);
                 return
               }
+              // After successful signup, redirect to user dashboard
+              router.push("/user");
         }
 
         setLoading(false); //End loading
