@@ -33,10 +33,12 @@ export default function TaskList( ) {
         fetchTasks();
     }, []);
 
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
+    if (tasks.length === 0) return <div>No tasks found.</div>;
+
     return (
         <div>
-            {error && <div>{error}</div>}
-            {loading && <div>Loading...</div>}
             {tasks.map((task) => (
                 <TaskItem
                     key={task.id}
