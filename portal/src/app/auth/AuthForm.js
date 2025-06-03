@@ -1,8 +1,8 @@
 "use client"; 
 import { useState } from "react";
 import { supabase } from "../../lib/supabaseClient"
-import TextInput from "@/components/TextInput";
-import Button from "@components/Button";
+import TextInput from "@/components/common/TextInput";
+import Button from "@/components/common/Button";
 import { useRouter } from "next/navigation";
 
 export default function AuthForm() {

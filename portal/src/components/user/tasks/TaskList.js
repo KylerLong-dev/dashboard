@@ -1,6 +1,6 @@
 "use client";
 
-import TaskItem from "@/components/TaskItem";
+import TaskItem from "@/components/user/tasks/TaskItem";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 

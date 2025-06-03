@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectProgress from "@/components/ProjectProgress";
+import ProjectProgress from "@/components/user/projects/ProjectProgress";
 
 export default function ProjectCard( {project} ) {
   return (

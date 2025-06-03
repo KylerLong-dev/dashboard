@@ -1,5 +1,5 @@
 "use client";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/common/Sidebar";
 import { useState } from "react";
 
 export default function DashboardLayout({ children }) {
