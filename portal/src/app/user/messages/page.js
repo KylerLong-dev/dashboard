@@ -1,3 +1,5 @@
+import ChatLayout from '@/components/user/messages/ChatLayout';
+
 export default function MessagesPage() {
-  return <div>Messages</div>;
-} 
+  return <ChatLayout />;
+}
