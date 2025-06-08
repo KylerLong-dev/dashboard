@@ -7,7 +7,12 @@ const MessageBubble = ({ message, timestamp, isUser }) => {
           : "bg-gray-100 text-black rounded-2xl px-6 py-3 max-w-xl text-left"
       }>
         <div>{message}</div>
-        <div className="text-xs text-gray-900 mt-1">{timestamp}</div>
+        <div className={
+          isUser
+          ? "text-xs text-white/70 mt-1"
+          : "text-xs text-gray-400 mt-1"
+        }>
+          {timestamp}</div>
       </div>
     </div>
   );

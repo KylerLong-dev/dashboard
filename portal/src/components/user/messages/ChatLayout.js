@@ -30,17 +30,20 @@ const ChatLayout = () => {
     }
     getMessages();
   }, []);
-
+  
   // Function to handle sending new messages
   async function sendMessage () {
     const { data: { user } } = await supabase.auth.getUser();
-    const { data, error } = await supabase.from("messages").insert([
+    const { data, error } = await supabase
+    .from("messages")
+    .insert([
       {
         user_id: user.id, 
         sender_role: "user",
         content: newMessage, 
       }
     ])
+    .select();
     if (error) {
       setError(error.message);
     }
