@@ -30,8 +30,9 @@ const ChatLayout = () => {
     }
     getMessages();
   }, []);
+
   // Function to handle sending new messages
-  async function sendMessages () {
+  async function sendMessage () {
     const { data: { user } } = await supabase.auth.getUser();
     const { data, error } = await supabase.from("messages").insert([
       {
@@ -44,12 +45,13 @@ const ChatLayout = () => {
       setError(error.message);
     }
     else {
-      //Need to update messages with setMessages and then clear input 
+      setMessages(prev => [...prev, ...data]); 
+      setNewMessage("");     
     }
   }
 
   if (error) return <div className="text-red-500">{error}</div>;
-  if (loading) return <div>{loading}</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="flex flex-col justify-between min-h-155 w-full bg-white rounded-2xl shadow-md">
@@ -61,7 +63,11 @@ const ChatLayout = () => {
       </div>
       <div className="flex flex-col">
         <div className="border-b border-gray-200 w-full" />
-        <MessageInput />
+        <MessageInput
+          value={newMessage}
+          onChange={e => {setNewMessage(e.target.value)}}
+          sendMessage={sendMessage}
+        />
       </div>
     </div>
   );
