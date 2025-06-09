@@ -1,8 +1,8 @@
 "use client";
-import { Send, Paperclip, Image } from "lucide-react";
+import { Send, Paperclip, Image, Trash2 } from "lucide-react";
 import { useRef } from "react";
 
-const MessageInput = ( { value, sendMessage, onTextChange, onAttachmentChange, onImageChange }) => {
+const MessageInput = ( { value, sendMessage, onTextChange, onAttachmentChange, onImageChange, attachment, image, removeImage, removeAttachment }) => {
 
   const imageInputRef = useRef(null);
   const attachmentInputRef = useRef(null);
@@ -15,6 +15,41 @@ const MessageInput = ( { value, sendMessage, onTextChange, onAttachmentChange, o
         sendMessage();
       }}
     >
+      {/* PREVIEW AREA - at the top of the form */}
+      {image && (
+        <div className="mb-2 flex items-center gap-2">
+          <img
+            src={URL.createObjectURL(image)}
+            alt="Preview"
+            className="h-16 w-16 object-cover rounded"
+            onLoad={e => URL.revokeObjectURL(e.target.src)}
+          />
+          <button
+            type="button"
+            onClick={removeImage}
+            className="ml-2 text-gray-400 hover:text-red-500 p-1"
+            aria-label="Remove image"
+          >
+            <Trash2 className="h-5 w-5" />
+          </button>
+        </div>
+      )}
+      {attachment && !attachment.type.startsWith("image/") && (
+        <div className="mb-2 flex items-center gap-2">
+          <span className="text-sm text-gray-600">{attachment.name}</span>
+          <button
+            type="button"
+            onClick={removeAttachment}
+            className="ml-2 text-gray-400 hover:text-red-500 p-1"
+            aria-label="Remove attachment"
+          >
+            <Trash2 className="h-5 w-5" />
+          </button>
+        </div>
+      )}
+      {/* END PREVIEW AREA - at the top of the form */}
+
+      {/* START CHAT FORM */}
       <div className="flex items-center gap-2">
         <input 
           ref={attachmentInputRef}
@@ -52,11 +87,13 @@ const MessageInput = ( { value, sendMessage, onTextChange, onAttachmentChange, o
         <button
           type="submit"
           className="rounded-full bg-blue-500 p-2 text-white transition hover:bg-blue-600 disabled:opacity-50 cursor-pointer"
-          disabled={!value.trim()} //disables if input is empty or only spaces
+          disabled={!value.trim() && !image && !attachment} //disables if input is empty or only spaces
         >
           <Send className="h-5 w-5" />
         </button>
       </div>
+      {/* END CHAT FORM */}
+
     </form>
   );
 };

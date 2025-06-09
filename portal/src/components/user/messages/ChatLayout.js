@@ -57,8 +57,8 @@ const ChatLayout = () => {
         user_id: user.id, 
         sender_role: "user",
         content: newMessage,
-        attachment_url: attachment,
-        image_url: image,
+        attachment_url: attachmentUrl,
+        image_url: imageUrl,
       }
     ])
     .select();
@@ -82,6 +82,15 @@ const ChatLayout = () => {
   function handleImageChange(e) {
     const file = e.target.files[0];
     setImage(file);
+  }
+
+  //Functions to remove attachment and images prior to sending to database 
+  function removeAttachment() {
+    setAttachment(null);
+  }
+  
+  function removeImage() {
+    setImage(null);
   }
 
   // Function to upload files, which is then used in sendMessage function
@@ -128,6 +137,10 @@ const ChatLayout = () => {
           onAttachmentChange={handleAttachmentChange}
           onImageChange={handleImageChange}
           sendMessage={sendMessage}
+          attachment={attachment}
+          image={image}
+          removeAttachment={removeAttachment}
+          removeImage={removeImage}
         />
       </div>
     </div>
