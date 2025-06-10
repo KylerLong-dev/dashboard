@@ -1,12 +1,24 @@
 "use client";
 import { Send, Paperclip, Image, Trash2, Plus } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const MessageInput = ( { value, sendMessage, onTextChange, onAttachmentChange, onImageChange, attachment, image, removeImage, removeAttachment }) => {
 
   const imageInputRef = useRef(null);
   const attachmentInputRef = useRef(null);
   const [showActions, setShowActions] = useState(false);
+  const [isMdOrLarger, setIsMdOrLarger] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px");
+    const handleChange = () => setIsMdOrLarger(media.matches);
+
+    handleChange(); //Set initial value 
+    media.addEventListener("change", handleChange); //Changes UI when component mounts
+
+    return () => media.removeEventListener("change", handleChange) //Cleanup function - need to remove eventlistener to ensure it doesn't continue to update the UI after component is unmounted (UI is already updated)
+  
+  }, []);
 
   return (
     <form 
@@ -129,8 +141,8 @@ const MessageInput = ( { value, sendMessage, onTextChange, onAttachmentChange, o
             type="text"
             value={value}
             onChange={onTextChange}
-            placeholder="Type your message..."
-            className="w-full rounded-full border border-gray-200 px-4 py-2 pr-10 focus:border-blue-500 focus:outline-none min-w-0"
+            placeholder={isMdOrLarger ? "Type your message..." : "Type here..."}
+            className="w-full rounded-full border border-gray-200 py-2 pl-4 pr-12 sm:px-4 focus:border-blue-500 focus:outline-none min-w-0"
           />
           {/* Send button inside input on mobile */}
           <button
