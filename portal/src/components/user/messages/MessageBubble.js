@@ -9,8 +9,8 @@ const MessageBubble = ({ message, timestamp, isUser, image_url, attachment_url }
           <Image
             src={image_url}
             alt="attachment"
-            width={200}
-            height={200}
+            width={140}
+            height={140}
             className="rounded-lg shadow max-h-60 object-cover bg-white"
           />
         </div>
@@ -19,8 +19,8 @@ const MessageBubble = ({ message, timestamp, isUser, image_url, attachment_url }
       {message && message.trim() && (
         <div className={
           isUser
-            ? "bg-blue-500 text-white rounded-2xl px-6 py-3 max-w-xl text-right"
-            : "bg-gray-100 text-black rounded-2xl px-6 py-3 max-w-xl text-left"
+            ? "bg-blue-500 text-white rounded-2xl px-4 py-3 max-w-xl text-right"
+            : "bg-gray-100 text-black rounded-2xl px-4 py-3 max-w-xl text-left"
         }>
           {message}
         </div>
