@@ -14,7 +14,7 @@ export default function ProjectProgress({ currentStage }) {
   const currentIndex = STAGES.findIndex(stage => stage.id === currentStage);
 
   return (
-    <div className="relative my-4">
+    <div className="relative my-4 sm:px-6">
       {/* Progress bar background */}
       <div className="hidden sm:block absolute top-4 left-0 w-full h-1 bg-gray-200 rounded-full" />
       <div
@@ -39,7 +39,7 @@ export default function ProjectProgress({ currentStage }) {
                 {idx < currentIndex ? "✓" : idx + 1}
               </div>
               {/* Tooltip for description, now above the stage circle, appears with ring on hover */}
-              <div className="absolute left-1/2 -top-12 z-10 w-48 -translate-x-1/2 rounded bg-gray-900 text-white text-xs px-3 py-2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-75 shadow-lg text-center">
+              <div className="absolute left-1/2 -top-12 z-10 w-48 -translate-x-1/2 rounded bg-gray-900 text-white text-xs px-2 py-2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-75 shadow-lg text-center">
                 {stage.description}
               </div>
             </div>

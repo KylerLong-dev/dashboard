@@ -29,7 +29,7 @@ export default function DashboardLayout({ children }) {
 
       <div className="flex-1 flex flex-col"> {/*container holding the header and main content*/}
         {/* Header */}
-        <header className="flex justify-between items-center w-full px-6 py-4 bg-gray-75 text-gray-900">
+        <header className="flex justify-between items-center w-full px-10 py-4 bg-gray-75 text-gray-900">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <div className="flex items-center gap-2">
             <button
@@ -57,7 +57,7 @@ export default function DashboardLayout({ children }) {
         </header>
 
         {/* Main content */}
-        <main className="flex-1 p-6 bg-gray-75 text-gray-900">
+        <main className="flex-1 px-10 py-6 bg-gray-75 text-gray-900">
           {children}
         </main>
       </div>
