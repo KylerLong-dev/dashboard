@@ -1,6 +1,5 @@
+import DashboardContent from "@/components/user/dashboard/DashboardContent"
 
-export default function UserDashboard() {
-  return (
-    <div>User Dashboard</div>
-  );
-} 
+export default function UserDashboardPage() {
+  return <DashboardContent />
+}
