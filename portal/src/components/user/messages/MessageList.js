@@ -1,4 +1,3 @@
-import { imageConfigDefault } from 'next/dist/shared/lib/image-config';
 import MessageBubble from './MessageBubble';
 
 const MessageList = ( {messages} ) => {

@@ -37,6 +37,9 @@ const ChatLayout = () => {
   async function sendMessage () {
     const { data: { user } } = await supabase.auth.getUser();
 
+    console.log("user:", user);
+    console.log("user_id to insert:", user?.id);
+
     //Upload attachment if present
     let attachmentUrl = null;
     if (attachment) {
