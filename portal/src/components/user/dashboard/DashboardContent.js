@@ -9,7 +9,7 @@ const summaryData = [
   ];
 
 const DashboardContent = () => (
-  <div className="p-4 sm:p-6 w-full max-w-7xl mx-auto">
+  <div className="py-4 sm:py-6 w-full">
     {/* Header */}
     <header className="mb-4 sm:mb-6 px-2 sm:px-0">
       <h2 className="text-gray-500 text-base sm:text-lg">
@@ -18,7 +18,7 @@ const DashboardContent = () => (
     </header>
 
     {/* Summary Cards */}
-    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 sm:mb-8">
+    <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6 sm:mb-8">
       {summaryData.map(({ title, value }) => (
         <div
           key={title}
