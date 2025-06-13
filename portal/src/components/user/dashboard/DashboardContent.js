@@ -35,7 +35,7 @@ const DashboardContent = () => (
         <h2 className="text-lg font-semibold mb-4">Projects</h2>
         <ProjectSummaryList />
       </section>
-      <aside>
+      <aside className="bg-white rounded-xl p-4 shadow">
         <h2 className="text-lg font-semibold mb-4">Recent Messages</h2>
         <RecentMessages />
       </aside>
