@@ -18,7 +18,7 @@ const DashboardContent = () => (
     </header>
 
     {/* Summary Cards */}
-    <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6 sm:mb-8">
+    <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
       {summaryData.map(({ title, value }) => (
         <div
           key={title}
@@ -31,15 +31,15 @@ const DashboardContent = () => (
     </section>
 
     <main className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <section className="lg:col-span-2">
-        <h2 className="text-lg font-semibold mb-4">Projects</h2>
+      <section className="lg:col-span-2 bg-white rounded-xl shadow p-6 max-h-[500px] overflow-y-auto">
+        <h2 className="text-lg font-semibold mb-4 bg-white">Projects</h2>
         <ProjectSummaryList />
       </section>
-      <aside className="bg-white rounded-xl p-4 shadow">
+      <aside className="bg-white rounded-xl p-6 shadow">
         <h2 className="text-lg font-semibold mb-4">Recent Messages</h2>
         <RecentMessages />
       </aside>
-      <section className="lg:col-span-3 mt-6">
+      <section className="lg:col-span-3 bg-white rounded-xl p-6 shadow">
         <h2 className="text-lg font-semibold mb-4">Task List</h2>
         <TaskListSummary />
       </section>
